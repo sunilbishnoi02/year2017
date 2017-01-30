@@ -1,0 +1,28 @@
+#!/bin/bash
+
+echo -n "Date & Time : " > f3.txt
+date '+%W %A %Y %X' >> f3.txt
+
+echo -n "Hostname : " >> f3.txt
+hostname >> f3.txt
+
+echo -n "IP Address : " >> f3.txt
+hostname -I >> f3.txt
+
+echo -n "Operating System : " >> f3.txt
+uname >> f3.txt ;  lsb_release -d |awk '{print $2 " " $3}' >> f3.txt
+
+echo -n "Architecture : " >> f3.txt
+uname -m >> f3.txt
+
+echo -n "Kernel Version : " >>f3.txt
+uname -r >> f3.txt
+
+echo -n "Ram : " >> f3.txt
+free -oh | awk '$1=="Mem:"{print $2}'  >> f3.txt
+
+echo -n "Swap : " >> f3.txt
+free -oh | awk '$1=="Swap:"{print $2}' >> f3.txt
+
+echo  "Disk Attached : " >> f3.txt
+lsblk -o NAME,SIZE,MOUNTPOINT >> f3.txt
