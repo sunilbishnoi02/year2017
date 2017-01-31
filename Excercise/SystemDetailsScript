@@ -1,28 +1,41 @@
 #!/bin/bash
 
-echo -n "Date & Time : " > f3.txt
-date '+%W %A %Y %X' >> f3.txt
-
-echo -n "Hostname : " >> f3.txt
-hostname >> f3.txt
-
-echo -n "IP Address : " >> f3.txt
-hostname -I >> f3.txt
-
-echo -n "Operating System : " >> f3.txt
-uname >> f3.txt ;  lsb_release -d |awk '{print $2 " " $3}' >> f3.txt
-
-echo -n "Architecture : " >> f3.txt
-uname -m >> f3.txt
-
-echo -n "Kernel Version : " >>f3.txt
-uname -r >> f3.txt
-
-echo -n "Ram : " >> f3.txt
-free -oh | awk '$1=="Mem:"{print $2}'  >> f3.txt
-
-echo -n "Swap : " >> f3.txt
-free -oh | awk '$1=="Swap:"{print $2}' >> f3.txt
-
-echo  "Disk Attached : " >> f3.txt
-lsblk -o NAME,SIZE,MOUNTPOINT >> f3.txt
+if [ -f $1 ]; then
+        echo -n "Date & Time : " > $1
+        date '+%W %A %Y %X' >> $1
+        echo -n "Hostname : " >> $1
+        hostname >> $1
+        echo -n "IP Address : " >> $1
+        hostname -I >> $1
+        echo -n "Operating System : " >> $1
+        uname >> $1 ;  lsb_release -d |awk '{print $2 " " $3}' >> $1
+        echo -n "Architecture : " >> $1
+        uname -m >> $1
+        echo -n "Kernel Version : " >> $1
+        uname -r >> $1
+        echo -n "Ram : " >> $1
+        free -oh | awk '$1=="Mem:"{print $2}'  >> $1
+        echo -n "Swap : " >> $1
+        free -oh | awk '$1=="Swap:"{print $2}' >> $1
+        echo  "Disk Attached : " >> $1
+        lsblk -o NAME,SIZE,MOUNTPOINT >> $1
+else
+        echo -n "Date & Time : "
+        date '+%W %A %Y %X'
+        echo -n "Hostname : "
+        hostname
+        echo -n "IP Address : "
+        hostname -I
+        echo -n "Operating System : "
+        uname ;  lsb_release -d |awk '{print $2 " " $3}'
+        echo -n "Architecture : "
+        uname -m
+        echo -n "Kernel Version : "
+        uname -r
+        echo -n "Ram : "
+        free -oh | awk '$1=="Mem:"{print $2}'
+        echo -n "Swap : "
+        free -oh | awk '$1=="Swap:"{print $2}'
+        echo  "Disk Attached : "
+        lsblk -o NAME,SIZE,MOUNTPOINT
+fi
