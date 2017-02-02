@@ -1,0 +1,14 @@
+#script that accepts a file name, starting and ending line numbers as args and displays all the lines between the given line numbers.
+
+#!/bin/bash
+if[$# -lt 3]
+then
+	echo "Insufficient Args "
+	exit 1
+fi
+if[-f $3]
+then 
+	head -$2 $3 | tail -n +$1
+else	
+	echo "$3 is not a file"
+fi

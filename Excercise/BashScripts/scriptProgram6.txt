@@ -1,0 +1,23 @@
+#script to list all the directory files in a directory
+
+#!/bin/bash
+echo "Enter a directory name"
+read dir
+
+if[-d $dir]
+then 
+	cd $dir
+	echo "Directories in the directory u entered are ... "
+	echo -e " 'ls -l | grep "^d" | cut -d "" -f9 ' "
+else
+	echo "The directory name U entered is not a directory"
+fi
+
+//a different code for the same problem
+for $i in 'ls'
+do 
+	if[ -d $i ]
+	then
+		echo "$i"
+	fi
+done

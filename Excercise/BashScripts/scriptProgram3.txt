@@ -1,0 +1,16 @@
+#Script that displays a list of files in the current directory to which the user has read,write and execute permissions
+
+#!/bin/bash
+echo "Files with r,w and x permissions are "
+for i in *
+do
+	if[-f $i]
+	then
+		if[-r $i -a -w $i -a -x $i]
+		then
+			echo "$i"
+		fi
+	else
+		echo "Not a file"
+	fi
+done

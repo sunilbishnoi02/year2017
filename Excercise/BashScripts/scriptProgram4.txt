@@ -1,0 +1,20 @@
+#script that receives any number of args checks if every arg supplied is a file or a directory. Whenever arg is a file, the number of lines in it is also reported.
+
+#!/bin/bash
+if[$# -eq 0]
+then
+	echo "Insufficient Args "
+	exit 1
+fi
+
+for i in $*
+do
+	if[-f $i]
+	then 
+		echo "$i is a file"
+		echo "no of lines in $i file are : " wc -l $i | cut -d "" -f1 "
+	elif[-d $i]
+	then 
+		echo "its a directory"
+	fi
+done

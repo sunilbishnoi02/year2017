@@ -1,0 +1,24 @@
+#Script that deletes all lines contating a specified word in one or more files supplified as args
+
+#!/bin/bash
+if[$# -eq 0]
+then
+	echo "Insufficient Args "
+	exit 1
+fi
+
+echo "Enter a word that you want to delete:"
+read word
+for i in $*
+do 
+	if[-f $i]
+	then
+		echo "Old content : "
+		cat > $i
+		echo "New contetnt : "
+		grep -v "$word" $i > File
+		cat File
+	else
+		echo "Not a file"
+	fi
+done

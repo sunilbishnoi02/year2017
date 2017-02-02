@@ -1,0 +1,23 @@
+#scripts that receives a list of file names as args, counts and reports the occurance of each word that is present in the first arguement file on other other arg files
+
+#!/bin/bash
+if[$# -eq 0]
+then
+	echo "Insufficient Args "
+	exit 1
+fi
+
+f=$1
+for i in 'cat $f'
+do 
+	for j in $*
+	do
+		if[-f $j]
+		then 
+			c= 'grep -c $i $j'
+			echo "ni of occurance of $i in $j is : $c"
+		else
+			echo "$j not a file"
+		fi
+	done
+done
